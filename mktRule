@@ -1,1 +1,22 @@
+Random random = new Random();
+int daysUntilExpiration = random.Next(12);
+//int discountPercentage = 0;
 
+int dia = daysUntilExpiration;
+
+Console.WriteLine(dia);
+
+if(dia >= 0)
+{
+    if(dia >=6)
+    {
+        Console.WriteLine("Your subscribe will inspire soon!");
+    }
+    else if(dia <=5)
+    {
+        Console.WriteLine($"Your subscription expires in {dia} days.\n" +
+"Renew now and save 10%!");
+    }
+}
+
+Console.WriteLine();
