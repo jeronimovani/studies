@@ -1,1 +1,76 @@
+Random vani = new Random();
 
+int dado1 = vani.Next(1, 7);
+int dado2 = vani.Next(1, 7);
+int dado3 = vani.Next(1, 7);
+
+//                   teste
+//dado1 = 6;
+//dado2 = 6;
+//dado3 = 6;
+
+
+int total = dado1+dado2+dado3;
+
+Console.WriteLine($"Rolada da Sorte: {dado1} + {dado2} + {dado3} = {total}");
+
+int i;
+i = 6;
+if(dado1 == dado2 || dado2 == dado3 || dado3 == dado1 )
+{
+    if(dado1 == dado2 && dado2 == dado3)
+    {
+        Console.WriteLine("Você tirou Triplos! +6 conto na trinca!");
+        total +=6;
+    }
+
+    else if(dado1 == i && dado2 == i && dado3 == i)
+    {
+        Console.WriteLine("Que HEXAGONO exuberante! tome mais 6!");
+        total+=6;
+    }
+
+    else
+    {
+        Console.WriteLine("Você tirou Duplos! +2 conto para você camarada!");
+        total+=2;
+    }
+    
+
+}
+
+Console.WriteLine($"Pontuação Total: {total}");
+if(total >= 15)
+{
+    Console.WriteLine("Você Ganhou! isso foi incrivel!");
+}
+
+else
+{
+    Console.WriteLine("Você Perdeu! Que pena, pode ser que se saia melhor na próxima!");
+}
+
+
+
+Random random = new Random();
+int daysUntilExpiration = random.Next(12);
+//int discountPercentage = 0;
+
+int dia = daysUntilExpiration;
+
+Console.WriteLine(dia);
+
+if(dia >= 0)
+{
+    if(dia >=6)
+    {
+        Console.WriteLine("Your subscribe will inspire soon!");
+    }
+    else if(dia <=5)
+    {
+        Console.WriteLine($"Your subscription expires in {dia} days.\n" +
+"Renew now and save 10%!");
+    }
+}
+
+Console.WriteLine();
