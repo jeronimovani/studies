@@ -19,3 +19,36 @@ fraudulentOrderIDs[0] = "F000";
 Console.WriteLine($"Reassign First: {fraudulentOrderIDs[0]}");
 
 Console.WriteLine($"There are {fraudulentOrderIDs.Length} fraudulent orders to process.");
+
+
+
+
+
+
+/*
+string[] names = {"Vani", "Josmar", "Marcia", "José", "Vitória"};
+foreach (string item in names)
+{
+    Console.WriteLine(item);
+}
+*/
+
+int[] inventory = {200, 300, 400, 500, 600, 700, 800};
+int sum = 0;
+int result = sum;
+foreach(int items in inventory)
+{
+    Console.WriteLine(items);
+    sum += items;
+    result = sum;
+}
+
+result++;
+
+if(result > 3500)
+{
+    Console.WriteLine($"Parabens, você alcançou o resultado: {result}");
+}
+
+Console.WriteLine(sum);
+Console.WriteLine(result);
