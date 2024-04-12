@@ -10,3 +10,24 @@ foreach(int items in inventory)
 }
 
 Console.WriteLine($"Atualmente possui {sum} itens no inventario! \nContagem de Bin: {bin}");
+
+////////////////////////////// VALIDADOR DE PEDIDOS ////////////////////////////////////////////////  
+
+string[] pedidosIDs = {"B123", "C234", "A345", "C15", "B177", "G3003", "C235", "B179", "G432", "F317", "B341"};
+//int fraudIDs = 0;
+int count = 0;
+int result = 0;
+foreach(string pedido in pedidosIDs)
+{
+    count++;
+    if(pedido.StartsWith("B"))
+    {
+    Console.WriteLine($"Pedido Nº{count}: {pedido}");
+    result = 1;
+    }
+}
+
+if(result == 1)
+    {
+        Console.WriteLine($"Você possui pedidos {count} fraudulentos!");
+    }
