@@ -23,7 +23,7 @@ Console.WriteLine($"There are {fraudulentOrderIDs.Length} fraudulent orders to p
 
 
 
-
+//////////////////////// retornar strings
 
 /*
 string[] names = {"Vani", "Josmar", "Marcia", "José", "Vitória"};
@@ -32,6 +32,8 @@ foreach (string item in names)
     Console.WriteLine(item);
 }
 */
+
+/////////////////// RETORNAR ITENS E O RESULTADO DA SOMA
 
 int[] inventory = {200, 300, 400, 500, 600, 700, 800};
 int sum = 0;
@@ -52,3 +54,29 @@ if(result > 3500)
 
 Console.WriteLine(sum);
 Console.WriteLine(result);
+
+
+/////////////////////////////////// GERADOR DE PEDIDO - VALIDADOR PEDIDOS FRAUDULENTOS
+
+using System.Net.NetworkInformation;
+
+Random random = new Random();
+string[] orderIDs = new string[5];
+for (int i = 0; i < orderIDs.Length; i++)
+{
+    int prefixValue = random.Next(65, 70); // GERAR NUMERO 
+    string prefix = Convert.ToChar(prefixValue).ToString(); // CONVERTER DENTRO DA ESCALA ASCII (LETRA ESTÁ ENTRE A - E)
+    string suffix = random.Next(1, 1000).ToString("000"); 
+    orderIDs[i] = prefix + suffix;
+}
+
+foreach(string orderID in orderIDs)
+{
+    Console.WriteLine(orderID); // RETORNAR PEDIDOS
+
+    if (orderID.StartsWith("A"))
+    {
+        Console.WriteLine($"Pedido: {orderID}"); // RETORNAR PEDIDOS "A"
+    }
+    
+}
