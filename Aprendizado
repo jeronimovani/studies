@@ -20,6 +20,100 @@ Console.WriteLine($"Reassign First: {fraudulentOrderIDs[0]}");
 
 Console.WriteLine($"There are {fraudulentOrderIDs.Length} fraudulent orders to process.");
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+using System;
+
+int[] sophiaPontos = new int[]{90,86,87,98,100,94,90};
+int[] andrewPontos = new int[]{92,89,81,96,90,89};
+int[] emmaPontos = new int[]{90,85,87,98,68,89,89,89};
+int[] loganPontos = new int[]{90,95,87,88,96,96};
+int[] vaniPontos = {89, 99, 95, 66, 100,92,87};
+
+string[] alunoNomes = new string[]{"Vani", "Andrew", "Emma", "Logan", "Sophia"};
+
+int[] alunoPontos = new int[10];
+
+int nProvas = 5;
+string letra = "";
+
+int count=0;
+int count2=0;
+foreach(string aluno in alunoNomes)
+{
+    count++;
+    string alunoAtual = aluno;
+    
+    if(alunoAtual == "Sophia")
+        alunoPontos = sophiaPontos;
+
+    else if(alunoAtual == "Andrew")
+        alunoPontos = andrewPontos;
+
+    else if(alunoAtual == "Emma")
+        alunoPontos = emmaPontos;
+
+    else if(alunoAtual == "Logan")
+        alunoPontos = loganPontos;
+
+    else if(alunoAtual == "Vani")
+        alunoPontos = vaniPontos;
+
+decimal calculoPontos = 0;
+int somaAluno = 0;
+
+//foreach para calculo de pontos na matriz.
+    foreach(int pontos in alunoPontos)
+    {
+        count2++;
+        somaAluno+=pontos;
+    }
+    calculoPontos = (decimal)(somaAluno)/nProvas;
+
+    if (calculoPontos >= 97)
+        letra = "A+";
+
+    else if (calculoPontos >= 93)
+        letra = "A";
+
+    else if (calculoPontos >= 90)
+        letra = "A-";
+
+    else if (calculoPontos >= 87)
+        letra = "B+";
+
+    else if (calculoPontos >= 83)
+        letra = "B";
+
+    else if (calculoPontos >= 80)
+        letra = "B-";
+
+    else if (calculoPontos >= 77)
+        letra = "C+";
+
+    else if (calculoPontos >= 73)
+        letra = "C";
+
+    else if (calculoPontos >= 70)
+        letra = "C-";
+
+    else if (calculoPontos >= 67)
+        letra = "D+";
+
+    else if (calculoPontos >= 63)
+        letra = "D";
+
+    else if (calculoPontos >= 60)
+        letra = "D-";
+
+    Console.WriteLine($"repForeachExt: {count}\t{alunoAtual}\t\t{calculoPontos}\t{letra}\t repForeachInter: {count2}");
+    
+}
+    Console.WriteLine("Pressione \"ENTER\" para continuar");
+    Console.ReadLine();
+
 
 
 
