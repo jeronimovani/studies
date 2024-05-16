@@ -174,3 +174,20 @@ foreach(string orderID in orderIDs)
     }
     
 }
+
+///////////////////////////////////////////////////////////////////////////// BOOL PAR OU IMPAR
+
+bool numeroPar(int numero)
+{
+    return numero % 2 == 0;
+}
+
+if(numeroPar(10098))
+{
+    Console.WriteLine("O numero é par!");
+}
+else
+{
+    Console.WriteLine("O numero é impar!");
+}
+Console.WriteLine(numeroPar(10098));
