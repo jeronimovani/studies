@@ -206,3 +206,24 @@ for (int i = 0; i < 101; i++)
     else
         Console.WriteLine(i);
 }
+
+///////////////////////////////////////////////////////////////////////////// EXEMPLO DO-WHILE
+
+int hero = 10;
+int monster = 10;
+
+Random dice = new Random();
+
+do 
+{
+    int ataque = dice.Next(1, 11);
+    monster -= ataque;
+    Console.WriteLine($"O monstro foi atacado e sofreu {ataque} de dano, restando {monster} de vida!");
+
+    if(monster <=0) continue;
+
+    ataque = dice.Next(1, 11);
+    hero -= ataque;
+    Console.WriteLine($"O heroi foi atacado e sofreu {ataque} de dano, restando {hero} de vida!");
+}while(hero > 0 && monster > 0);
+Console.WriteLine(hero > monster ? "Herói Venceu!" : "Monstro Venceu!");
