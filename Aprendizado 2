@@ -1,0 +1,56 @@
+///////////////////////////////////////////////// Entrada de Usuario com validadores
+
+string? readResult;
+string? secondLine;
+bool validEntry = false;
+
+Console.Clear();
+
+Console.WriteLine(">>>> Enter a first String containing at least five characters:");
+do
+{
+    readResult = Console.ReadLine();
+    if(readResult != null)
+    {
+        if(readResult.Trim().ToLower() == "sair")
+        {
+        Console.WriteLine("Exiting inputing...");
+        Console.ReadKey();
+        break;
+        }
+
+        if(readResult.Length > 5)
+        {
+            if(readResult.Length > 20)
+            {
+                validEntry = false;
+                Console.WriteLine($">> The input \"{readResult}\" have too many characters, please try again:");
+            }
+            else 
+            {
+                validEntry = true;
+                Console.WriteLine(">>>> Now enter a second string, at least with five characters:");
+            }
+        }
+        else
+        {
+            Console.WriteLine(">> Your input is invalid, please try again!");
+        }
+    }
+} while (validEntry == false);
+while (validEntry == true)
+{
+    secondLine = Console.ReadLine();
+    if (secondLine != null)
+    {
+        if(secondLine.Length > 5)
+        {
+        Console.WriteLine($"First input:\t{readResult}\nSecond input:\t{secondLine}");
+        break;
+        }
+        else{
+            Console.WriteLine("Input dont have the Min characters");
+        }
+
+    }
+}
