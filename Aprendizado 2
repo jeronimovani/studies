@@ -54,3 +54,39 @@ while (validEntry == true)
 
     }
 }
+
+/////////////////////////////////////////////////////////// Desafio - Validar entrada de inteiros
+
+string? input;
+string entrada = "";
+bool vldNum = false;
+int num = 0;
+Console.Clear();
+
+Console.WriteLine("Escreve um numero valido entre 5 e 10");
+do {
+input = Console.ReadLine();
+if(input != null)
+{
+    entrada = input;
+}
+
+vldNum = int.TryParse(input, out num);
+//Verificar se o numero inserido é valido!
+
+if(vldNum == true)
+{
+    if(num <=5 || num >=10)
+    {
+        vldNum = false;
+        Console.WriteLine($"O numero {num} não é aceito, por favor insira um numero entre 5 e 10.");
+    }
+}
+else
+{
+    Console.WriteLine($"O valor inserido não é valido, favor insira um valor a ser validado!");
+}
+
+} while (vldNum == false);
+
+Console.WriteLine($"O numero ({num}) foi aceito.");
