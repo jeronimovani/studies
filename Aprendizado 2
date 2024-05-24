@@ -90,3 +90,38 @@ else
 } while (vldNum == false);
 
 Console.WriteLine($"O numero ({num}) foi aceito.");
+
+////////////////////////////////////////////////////////////////////// Desafio - Validar cadeia de caracteres;
+
+string? input;
+string entrada = "";
+bool validy = false;
+
+string[] cargos = {"administrator", "manager", "user"};
+
+Console.WriteLine("Enter your role name (Administrator, Manager, or User):");
+do
+{
+    input = Console.ReadLine();
+    if(input != null)
+    {
+        entrada = input;
+    }
+    for(int i = 0; i < 3; i++)
+    {
+        if(entrada.Trim().ToLower() == cargos[i])
+        {
+            validy = true;
+            break;
+        }
+        else
+        {
+           validy = false;
+        }
+    }
+    if(!validy)
+    {
+        Console.WriteLine($"That role name you entered, ({entrada.Trim()}) is not valid. Enter your role name (Administrator, Manager, or User):");
+    }
+} while (validy == false);
+Console.WriteLine($"Your input value ({entrada.Trim()}) haas been accepted.");
