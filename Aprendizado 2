@@ -125,3 +125,35 @@ do
     }
 } while (validy == false);
 Console.WriteLine($"Your input value ({entrada.Trim()}) haas been accepted.");
+
+///////////////////////////////////////////////////////////////////////// DESAFIO - IndexOf para busca e alteração de string.
+
+string[] frases = {"O sistema. Deve. Retornar. em cada linha. separado por. pontos", "Sim Vani!"};
+int matriz = frases.Length;
+
+int localPonto = 0;
+for (int i = 0; i < matriz; i++)
+{   
+
+    int count = 0;
+        string minhaFrase = frases[i];
+   
+        localPonto = minhaFrase.IndexOf(".");
+    
+    string minhaSentença;
+    while (localPonto != -1)
+    {
+        minhaSentença = minhaFrase.Remove(localPonto);
+        //
+        minhaFrase = minhaFrase.Substring(localPonto + 1);
+
+        minhaFrase = minhaFrase.TrimStart();
+
+        localPonto = minhaFrase.IndexOf(".");
+    
+    Console.WriteLine($"{minhaSentença}");
+    }
+
+minhaSentença = minhaFrase.Trim();
+Console.WriteLine(minhaSentença);
+}
