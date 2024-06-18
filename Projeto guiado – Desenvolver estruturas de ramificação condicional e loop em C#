@@ -297,6 +297,7 @@ do
             for (int i = 0; i < maxPets; i++)
             {
                 //converter string interativa em string comum para facilitar interação.
+                string physicalDesc = ourAnimals[i, 4];
                 string id = ourAnimals[i, 0];
                 string age = ourAnimals[i, 2];
 
@@ -311,7 +312,7 @@ do
                 {
                     while (!ageValidy)
                     {
-                        Console.WriteLine($"A idade {subAge}, é invalida! Favor insira uma idade valida:");
+                        Console.WriteLine($"Enter a age for {id}");
 
                         readResult = Console.ReadLine();
                         if (readResult != null)
@@ -322,9 +323,34 @@ do
                             }
                         }
                     }
-                }
+                    gps = physicalDesc.IndexOf(":");
+                    string subPhysicalDesc = physicalDesc.Substring(gps + 1).Trim();
+                    if (subPhysicalDesc == "" || subPhysicalDesc.Length < 5)
+                    {
+                        do
+                        {
+                            Console.WriteLine($"Enter a physical description for {id} (size, color, breed, gender, weight, housebroken)");
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                if (readResult.Length < 5 && readResult != "")
+                                {
+                                    validEntry = false;
+                                    Console.WriteLine($"The physical description of pet cant be: {readResult}");
+                                }
+                                else
+                                {
+                                    validEntry = true;
+                                    ourAnimals[i, 4] = "Physical description: " + readResult;
+                                }
+                            }
 
+                        } while (validEntry == false);
+                    }
+                }
             }
+            Console.WriteLine("Age and physical description fields are complete for all of our friends.");
+
 
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
