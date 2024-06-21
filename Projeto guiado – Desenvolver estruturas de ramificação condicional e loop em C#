@@ -416,59 +416,60 @@ do
             // Edit an animal’s age");
             // ourAnimals[i, 0] = "ID #: " + animalID;
             // ourAnimals[i, 2] = "Age: " + animalAge;
-            string editAge = "y";
-            string idSelect = "";
+            validEntry = false;
             int validAge = 0;
             string newAge = "";
-            Console.WriteLine("Enter a ID there you want to edit the age: ");
+            string idSelect = "";
+
+            Console.WriteLine("These are the pets you can edit age of:");
             for (int i = 0; i < maxPets; i++)
             {
                 if (ourAnimals[i, 0] != "ID #: ")
                 {
-                    Console.WriteLine($"{ourAnimals[i, 0]}");
+                    Console.WriteLine($"{ourAnimals[i, 0]} {ourAnimals[i, 3]}");
                 }
             }
-            for (int j = 0; j < maxPets; j++)
+
+            while (validEntry == false)
             {
-                int gps1 = ourAnimals[j, 0].IndexOf(":");
-                int gps2 = ourAnimals[j, 2].IndexOf(":");
+                Console.WriteLine("Enter a ID there you want to edit the age(or press 0 to return for menu):");
                 readResult = Console.ReadLine();
                 if (readResult != null)
                 {
                     idSelect = readResult.Trim().ToLower();
-                    if (idSelect == ourAnimals[j, 0].Substring(gps1 + 1).Trim())
-                    {
-                        Console.WriteLine($"Insert a a new age for {ourAnimals[j, 0]}");
-                        readResult = Console.ReadLine();
-                        if (readResult != null)
-                        {
-                            newAge = readResult;
-                            do
-                            {
-                                if (int.TryParse(newAge, out validAge))
-                                {
-                                    validEntry = true;
-                                    ourAnimals[j, 2] = "Age: " + newAge;
-                                }
-                                else
-                                {
-                                    validEntry = false;
-                                    Console.WriteLine($"The insert {newAge} is not a valid age!");
-                                }
+                    if (idSelect == "0")break;
 
-                            } while (validEntry == false);
-                        }
-                    }
-                    else
+                    for (int i = 0; i < maxPets; i++)
                     {
-                        Console.WriteLine($"That animal id doesnt exist!");
-                        Console.WriteLine("Enter a valid PET ID to edit age:");
-                        Console.WriteLine(ourAnimals[j, 0].Substring(gps1 + 1).Trim());
-                        Console.WriteLine();
+                        int gps = ourAnimals[i, 0].IndexOf(":");
+
+                        if (idSelect == ourAnimals[i, 0].Substring(gps + 1).TrimStart())
+                        {
+                            Console.WriteLine("Insert a validy age, only numbers: ");
+                            while (validEntry == false)
+                            {
+                                readResult = Console.ReadLine();
+                                if (readResult != null)
+                                {
+                                    newAge = readResult.Trim();
+                                    if (int.TryParse(newAge, out validAge))
+                                    {
+                                        validEntry = true;
+                                        gps = ourAnimals[i, 2].IndexOf(":");
+                                        Console.WriteLine($"The age of {ourAnimals[i, 0]} was changed from {ourAnimals[i, 2].Substring(gps + 1).TrimStart()} to {newAge}");
+                                        ourAnimals[i, 2] = $"Age: {newAge}";
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"The insert {newAge} isnt validy age, try again:");
+                                        validEntry = false;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-
 
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
@@ -476,7 +477,57 @@ do
 
         case "6":
             // Edit an animal’s personality description");
-            Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+            // ourAnimals[i, 0] = "ID #: " + animalID;
+            // urAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
+            validEntry = false;
+            idSelect = "";
+
+            Console.WriteLine("These are the pets you can edit the personality description of");
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    Console.WriteLine($"{ourAnimals[i, 0]} {ourAnimals[i,3]}");
+                }
+            }
+            while (validEntry == false)
+            {
+                Console.WriteLine("Enter a ID ther you want edit the personality(or press 0 to return for menu):");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    idSelect = readResult.Trim(); // recebe o valor para validar
+                    if (idSelect == "0") break;
+                    for (int i = 0; i < maxPets; i++)
+                    {
+                        int gps = ourAnimals[i, 0].IndexOf(":");
+                        if (idSelect == ourAnimals[i, 0].Substring(gps + 1).TrimStart()) // verifica se valor inserido é um id existente
+                        {
+                            while (validEntry == false) // inicia loop para nova personalidade
+                            {
+                                Console.WriteLine($"Enter a new personalty description for {ourAnimals[i, 0]}:");
+                                readResult = Console.ReadLine();
+                                if (readResult != null)
+                                {
+                                    animalPersonalityDescription = readResult.Trim().ToLower();
+                                    if (animalPersonalityDescription.Length < 10 || animalPersonalityDescription == "")
+                                    {
+                                        Console.WriteLine($"Invalid description, have to be less than 10 chars and cant be blank!");
+                                        validEntry = false;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"Personality description of {ourAnimals[i, 0]} has been updated");
+                                        ourAnimals[i, 5] = $"Personality: {animalPersonalityDescription}";
+                                        validEntry = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
