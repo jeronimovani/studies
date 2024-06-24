@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 
 // the ourAnimals array will store the following: 
 string animalSpecies = "";
@@ -17,6 +18,7 @@ int petCount = 0;
 string anotherPet = "y";
 bool validEntry = false;
 int petAge = 0;
+int gps;
 
 
 // array used to store runtime data, there is no persisted data
@@ -57,11 +59,10 @@ for (int i = 0; i < maxPets; i++)
         case 3:
             animalSpecies = "cat";
             animalID = "c4";
-            animalAge = "?";
+            animalAge = "3";
             animalPhysicalDescription = "";
             animalPersonalityDescription = "";
-            animalNickname = "";
-
+            animalNickname = "vanis";
             break;
 
         default:
@@ -299,7 +300,7 @@ do
                 string id = ourAnimals[i, 0];
                 string age = ourAnimals[i, 2];
                 //localizar ":" para extrair idade
-                int gps = age.IndexOf(":");
+                gps = age.IndexOf(":");
                 string subAge = age.Substring(gps + 1).Trim();
                 //validar se a idade é convertivel para int.
                 int ageTrue;
@@ -360,7 +361,7 @@ do
 
             for (int i = 0; i < maxPets; i++)
             {
-                int gps = ourAnimals[i, 3].IndexOf(":");
+                gps = ourAnimals[i, 3].IndexOf(":");
                 string nickname = ourAnimals[i, 3].Substring(gps + 1).Trim();
                 if (ourAnimals[i, 0] != "ID #: ")
                 {
@@ -437,11 +438,11 @@ do
                 if (readResult != null)
                 {
                     idSelect = readResult.Trim().ToLower();
-                    if (idSelect == "0")break;
+                    if (idSelect == "0") break;
 
                     for (int i = 0; i < maxPets; i++)
                     {
-                        int gps = ourAnimals[i, 0].IndexOf(":");
+                        gps = ourAnimals[i, 0].IndexOf(":");
 
                         if (idSelect == ourAnimals[i, 0].Substring(gps + 1).TrimStart())
                         {
@@ -487,7 +488,7 @@ do
             {
                 if (ourAnimals[i, 0] != "ID #: ")
                 {
-                    Console.WriteLine($"{ourAnimals[i, 0]} {ourAnimals[i,3]}");
+                    Console.WriteLine($"{ourAnimals[i, 0]} {ourAnimals[i, 3]}");
                 }
             }
             while (validEntry == false)
@@ -500,7 +501,7 @@ do
                     if (idSelect == "0") break;
                     for (int i = 0; i < maxPets; i++)
                     {
-                        int gps = ourAnimals[i, 0].IndexOf(":");
+                        gps = ourAnimals[i, 0].IndexOf(":");
                         if (idSelect == ourAnimals[i, 0].Substring(gps + 1).TrimStart()) // verifica se valor inserido é um id existente
                         {
                             while (validEntry == false) // inicia loop para nova personalidade
@@ -537,12 +538,49 @@ do
 
             // ourAnimals[i, 0] = "ID #: " + animalID;
             // ourAnimals[i, 1] = "Species: " + animalSpecies;
-            // ourAnimals[i, 2] = "Age: " + animalAge;
             // ourAnimals[i, 3] = "Nickname: " + animalNickname;
             // ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
             // ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
 
-            Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
+            idSelect = "";
+            validEntry = false;
+
+            while (validEntry == false)
+            {
+                Console.WriteLine("1 - Nickname");
+                Console.WriteLine("2 - Physical Description");
+                Console.WriteLine("3 - Personality Description");
+                Console.WriteLine();
+                Console.WriteLine("Insert a option to show for all the cats(or enter 0 to exit): ");
+
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    idSelect = readResult;
+                    if (idSelect == "1" || idSelect == "2" || idSelect == "3")
+                        validEntry = true;
+                    else if (idSelect == "0")
+                        break;
+                    else
+                    {
+                        Console.WriteLine("Please, insert a correct option:");
+                        validEntry = false;
+                    }
+                }
+            }
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: " && ourAnimals[i, 1].Contains("cat"))
+                {
+                    if (idSelect == "1")
+                        Console.WriteLine($"{ourAnimals[i, 0]} - {ourAnimals[i, 3]}");
+                    if (idSelect == "2")
+                        Console.WriteLine($"{ourAnimals[i, 0]} - {ourAnimals[i, 4]}");
+                    if (idSelect == "3")
+                        Console.WriteLine($"{ourAnimals[i, 0]} - {ourAnimals[i, 5]}");
+                }
+            }
+
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
