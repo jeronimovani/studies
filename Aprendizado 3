@@ -1,0 +1,40 @@
+// ---------------------> Minha solução 
+// Trabalhando com .Split, String.Join, Array.Reverse(minhaArray);
+
+string pangram = "The quick brown fox jumps over the lazy dog";
+string[] pangramStringArray = pangram.Split(" ");
+char[] pangramCharArray = new char[5];
+string[] pangramReverseArray = new string[9];
+string pangramReverse = "";
+
+for (int i = 0; i < 9; i++)
+{
+    string convert = pangramStringArray[i];
+    pangramCharArray = convert.ToCharArray();
+    for (int j = 0; j < pangramCharArray.Length; j++)
+    {
+        pangramReverseArray[i] += pangramCharArray[j];
+    }
+}
+pangramReverse = String.Join(" ", pangramReverseArray);
+Console.WriteLine(pangramReverse);
+
+// ---------------- Solução LEARN
+// Trabalhando com .Split, String.Join, Array.Reverse(minhaArray);
+// Aqui foi utilizado o construtor de string .... newMessage[i] = new string(letters);
+
+string pangram = "The quick brown fox jumps over the lazy dog";
+
+string[] message = pangram.Split(' ');
+
+string[] newMessage = new string[message.Length];
+
+for(int i = 0; i < message.Length; i++)
+{
+    char[] letters = message[i].ToCharArray();
+    Array.Reverse(letters);
+    newMessage[i] = new string(letters);
+}
+
+string result = String.Join(' ', newMessage);
+Console.WriteLine(result);
