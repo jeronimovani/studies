@@ -129,3 +129,20 @@ comparisonMessage += string.Format("{0:P2}", newReturn).PadRight(10);
 comparisonMessage += string.Format("{0:C2}", newProfit).PadRight(10);
 Console.WriteLine(comparisonMessage);
 //////////////////////////////////////////////////////////////////////////////////////////
+-------> INDEX OF -- tricks
+string message = "What is the value <span>between the tags</span>";
+
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+
+int openingPosition = message.IndexOf(openSpan);
+int closingPosition = message.IndexOf(closeSpan);
+
+openingPosition += openSpan.Length;
+
+//Console.WriteLine(openingPosition);
+//Console.WriteLine(closingPosition);
+
+int lenght = closingPosition - openingPosition;
+Console.WriteLine(lenght);
+Console.WriteLine(message.Substring(openingPosition, lenght));
