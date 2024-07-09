@@ -146,3 +146,17 @@ openingPosition += openSpan.Length;
 int lenght = closingPosition - openingPosition;
 Console.WriteLine(lenght);
 Console.WriteLine(message.Substring(openingPosition, lenght));
+
+---------------------------------------------------------> INDEX OF -- tricks
+string[] mensagens = { "Me diga o que há dentro da tag <span>Olá Giovani!</span>", "Me diga o que há dentro da tag <span>Você tem 24 anos!</span>" };
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+
+for (int i = 0; i < mensagens.Length; i++)
+{   
+    int trackOpen = mensagens[i].IndexOf(openSpan); 
+    int trackClose = mensagens[i].IndexOf(closeSpan);
+    trackOpen+=6;
+    int path = trackClose - trackOpen;
+    Console.WriteLine(mensagens[i].Substring(trackOpen, path));
+}
