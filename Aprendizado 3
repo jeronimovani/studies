@@ -160,3 +160,53 @@ for (int i = 0; i < mensagens.Length; i++)
     int path = trackClose - trackOpen;
     Console.WriteLine(mensagens[i].Substring(trackOpen, path));
 }
+
+-------------------------------------------------------------> INDEXOFANY (UTILIZAÇÃO DE MATRIZ PARA IDENTIFICAR CHAR DENTRO DE OUTRA STRING)
+/*
+string message = "Help (find) the {opening symbols}";
+Console.WriteLine($"Searching THIS Message: {message}");
+char[] openSymbols = { '[', '{', '('};
+int startPosition = 5;
+int openingPosition = message.IndexOfAny(openSymbols);
+Console.WriteLine($"Found WITHOUT using startPosition: {message.Substring(openingPosition)}");
+
+openingPosition = message.IndexOfAny(openSymbols, startPosition);
+Console.WriteLine($"Found WITH using startPosition {startPosition}: {message.Substring(openingPosition)}");
+*/
+
+// Aplicando IndexOfAny em multiploes caracteres
+
+string message = "(What if) I have [different symbols] but every {open symbols} needs a [matching closing symbol]?";
+
+char[] openSymbols = { '[', '{', '(' };
+
+int closingPosition = 0;
+
+while (true)
+{
+
+    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+    if (openingPosition == -1) break;
+
+    string currentSymbol = message.Substring(openingPosition, 1);
+
+    char matchingSymbol = ' ';
+
+    switch (currentSymbol)
+    {
+        case "[":
+            matchingSymbol = ']';
+            break;
+        case "{":
+            matchingSymbol = '}';
+            break;
+        case "(":
+            matchingSymbol = ')';
+            break;
+    }
+    openingPosition += 1;
+    closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
+}
