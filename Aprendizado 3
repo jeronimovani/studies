@@ -147,7 +147,7 @@ int lenght = closingPosition - openingPosition;
 Console.WriteLine(lenght);
 Console.WriteLine(message.Substring(openingPosition, lenght));
 
----------------------------------------------------------> INDEX OF -- tricks
+////////////////////////////////////////////////////////////------------------------------------> INDEX OF -- tricks
 string[] mensagens = { "Me diga o que há dentro da tag <span>Olá Giovani!</span>", "Me diga o que há dentro da tag <span>Você tem 24 anos!</span>" };
 const string openSpan = "<span>";
 const string closeSpan = "</span>";
@@ -161,7 +161,7 @@ for (int i = 0; i < mensagens.Length; i++)
     Console.WriteLine(mensagens[i].Substring(trackOpen, path));
 }
 
--------------------------------------------------------------> INDEXOFANY (UTILIZAÇÃO DE MATRIZ PARA IDENTIFICAR CHAR DENTRO DE OUTRA STRING)
+////////////////////////////////////////////////////////-----------------------------------> INDEXOFANY (UTILIZAÇÃO DE MATRIZ PARA IDENTIFICAR CHAR DENTRO DE OUTRA STRING)
 /*
 string message = "Help (find) the {opening symbols}";
 Console.WriteLine($"Searching THIS Message: {message}");
@@ -210,3 +210,47 @@ while (true)
     int length = closingPosition - openingPosition;
     Console.WriteLine(message.Substring(openingPosition, length));
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------>> Desafio Alterar cadeia de caracteres com IndexOf,Remove e REPLACE
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+//---------------Constante para tags <span></span>
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
+
+//------------ localizar posição <span> utilizando a constante acima
+int spanOpen = input.IndexOf(openSpan) + openSpan.Length;
+int spanClose = input.IndexOf(closeSpan);
+
+//---------- comprimento entre a abertura e o fechamento da tag <span>
+int spanLength = spanClose - spanOpen;
+
+//------------ exibir conteudo dentro da tag
+quantity = "Quantity: " + input.Substring(spanOpen, spanLength);
+
+// ------------------ constante para tags "&trade;" e "&reg;" 
+const string tradeTag = "&trade;";
+const string regTag = "&reg;";
+
+//------------------ substituir tag por outra tag
+output = input.Replace(tradeTag, regTag);
+
+// ------ constante de tag abertura <div> e remoção da mesma dentro da string
+const string openDiv = "<div>";
+int divOpen = output.IndexOf(openDiv);
+output = output.Remove(divOpen, openDiv.Length);
+
+// ------ constante de tag fechamento </div> e remoção da mesma dentro da string
+const string closeDiv = "</div>";
+int divClose = output.IndexOf(closeDiv);
+output = output.Remove(divClose, closeDiv.Length);
+
+output = $"Output: {output}";
+
+Console.WriteLine(quantity);
+Console.WriteLine(output);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
