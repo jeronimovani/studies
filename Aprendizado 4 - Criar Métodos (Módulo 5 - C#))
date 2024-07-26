@@ -10,7 +10,70 @@ void Contagem(int max)
         }
     }
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+string[] ipv4Input = { "107..2.5", "199.168.0.1", "555.254.0.", "147.1..7" };
+string[] address;
+bool validLength = false;
+bool validZeroes = false;
+bool validRange = false;
+
+foreach (string ip in ipv4Input)
+{
+    address = ip.Split('.', StringSplitOptions.RemoveEmptyEntries);
+    ValidateLength();
+    ValidateZeroes();
+    ValidateRange();
+
+    if (validLength && validZeroes && validRange)
+    {
+        Console.WriteLine($"ip {ip} is a valid IPv4 address");
+        Console.Write($"\t Length: {validLength}    Zeroes: {validZeroes}   Range: {validRange}\n");
+    }   
+    else
+    {
+        Console.WriteLine($"ip {ip} is a invalid IPv4 address");
+        Console.Write($"\t Length: {validLength}    Zeroes: {validZeroes}   Range: {validRange}\n");
+    }
+
+}
+// Método para verificar tamanho do IP.
+void ValidateLength()
+{
+    validLength = address.Length == 4;
+}
+
+// Método para caso o IP possuir mais de 1 digito, se o mesmo tem 0 a esquerda.
+void ValidateZeroes()
+{
+    foreach (string number in address)
+    {
+        if (number.Length > 1 && number.StartsWith("0"))
+        {
+            validZeroes = false;
+            return;
+        }
+    }
+    validZeroes = true;
+}
+
+// Método para verificar se cada numeração é menor que 0 ou maior que 255
+void ValidateRange()
+{
+    foreach (string number in address)
+    {
+        int num = int.Parse(number);
+        if (num < 0 || num > 255)
+        {
+            validRange = false;
+            return;
+        }
+    }
+    validRange = true;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ----- CRIAR MÉTODOS PARA FUNÇÕES REUTILIZAVEIS;
 
 using System;
