@@ -155,29 +155,31 @@ void AdjustTimes()
 ----- > Ajuste de fuso Horario - Diferença de fusos
 
 int[] schedule = { 800, 1200, 1600, 2000 };
-DisplayAdjustedTimes(schedule, 4, -5);
+int diff = 0;
+
+DisplayAdjustedTimes(schedule, -9, 4);
 
 void DisplayAdjustedTimes(int[] times, int currentGMT, int newGMT)
 {
-    int diff = 0;
+    // Verifica com MATH.ABS se nada está acima de 12.
     if (Math.Abs(newGMT) > 12 || Math.Abs(currentGMT) > 12)
     {
-        Console.WriteLine("Invalid GMT");
+        Console.WriteLine();
     }
+    //Verifica se os dois valores possuem SINAIS IGUAIS, valida se simultaneamente estão abaixo de 0 ou acima de 0.
     else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0)
     {
         diff = 100 * (Math.Abs(newGMT) - Math.Abs(currentGMT));
-        //Console.WriteLine(diff);
     }
+    // Se sinais forem opostos, realiza calculo abaixo, aplicando Math.ABS
     else
     {
         diff = 100 * (Math.Abs(newGMT) + Math.Abs(currentGMT));
-        //Console.WriteLine(diff);
     }
-
+    //Exibe os novos horarios
     for (int i = 0; i < times.Length; i++)
     {
-        int newTime = ((times[i] + diff)) % 2400;
-        Console.WriteLine($"{times[i]} -> {newTime}");
+        int newTime = (times[i] + diff) % 2400;
+        Console.WriteLine($"{times[i]} --> {newTime}");
     }
 }
