@@ -183,3 +183,84 @@ void DisplayAdjustedTimes(int[] times, int currentGMT, int newGMT)
         Console.WriteLine($"{times[i]} --> {newTime}");
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+string[] students = {"Vani", "Vanelsson", "Vanik", "Vanozo"};
+
+DisplayStudents(students);
+
+// Alterando parametro de acordo com o parametro original
+DisplayStudents(new string[] {"Caralhoso", "Gigantoso gostoso"});
+
+Console.WriteLine("-----Vamos alterar alguns: ");
+DisplayStudents(new string[] {"Vanoso", "Vaniassimus"});
+
+// Uma método aceita um parametro que tenha o mesmo nome que uma variavel real. exemplo STUDENTS.
+void DisplayStudents(string[] students) 
+{
+    foreach (string student in students)
+    {
+        Console.Write($"{student}, ");
+    }
+    Console.WriteLine();
+}
+*/
+///////////////////////////////////////////////////////////////////
+string? input;
+// Variavel GLOBAL, para utilizar em métodos.
+double pi = 3.14159;
+bool validy = false;
+string valorInput = "";
+int valor = 0;
+
+// loop para coleta de dados
+do
+{
+    Console.Write($"Vamos calcular a area e a circunferencia de um circulo, insira o raio: ");
+    ColetarRadius();
+    if (validy)
+    {
+        ShowAreaAndCircumference(valor);
+    }
+} while (validy == false);
+
+
+// MÉTODO PARA COLETAR DADOS DE ENTRADA DO USUARIO, E VERIFICAR SE OCORRE CONVERSÃO PARA INT, UTILIZANDO TRYPARSE.
+void ColetarRadius() 
+{
+    string? input = Console.ReadLine();
+    if (input != null)
+    {
+        valorInput = input.Trim();
+    }
+    if (int.TryParse(valorInput, out valor))
+    {
+        validy = true;
+    }
+    else
+    {
+        if(valorInput == "")
+        Console.WriteLine($"Valor inserido não é valido!");
+    }
+}
+
+// MÉTODO chamador de métodos de exibição de area e circunferencia calculadas.
+void ShowAreaAndCircumference(int radius)
+{
+    Console.WriteLine($"Circle with radius {radius}");
+    PrintCircleArea(radius);
+    PrintCircumference(radius);
+}
+void PrintCircleArea(int radius)
+{
+    //Calcula e exibe a area de um circulo.
+    double area = pi * (radius * radius);
+    Console.WriteLine($"Area: {area}");
+}
+void PrintCircumference(int radius)
+{
+    // Calcula e exibe a cirunferencia de um circulo.
+    double circumference = 2 * pi * radius;
+    Console.WriteLine($"Circumference: {circumference}");
+}
