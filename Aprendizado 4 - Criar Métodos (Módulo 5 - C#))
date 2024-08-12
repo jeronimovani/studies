@@ -264,3 +264,43 @@ void PrintCircumference(int radius)
     double circumference = 2 * pi * radius;
     Console.WriteLine($"Circumference: {circumference}");
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//            TIPO DE VALOR ---->
+int a = 6;
+int b = 7;
+int c = 0;
+
+// ------ Será possivel notar que as variaveis globais não teem seu valor alterado.
+Multiply(a, b, c);
+Console.WriteLine($"Estado global dos valores: {a} x {b} = {c}");
+
+// ------ Iniciado método com PARAMETROS cujo as variaveis possuem o mesmo nome que as variaveis globais.
+void Multiply(int a, int b, int c)
+{
+     c = a * b;
+     Console.WriteLine($"Resultado da multiplação no método: {a} x {b} = {c}");
+}
+
+//////////////////////////////////////
+//         TIPO DE REFERENCIA ---->
+
+int[] array = {1, 2, 3, 4, 5}
+
+
+// Método para printar o elemento de cada indice da matriz.
+void PrintArray(int[] array)
+{
+    foreach(int num in array)
+        {
+            Console.Write($"{num} ");
+        }
+}
+
+void Clearing(int[] array)
+{
+    for(int i = 0; i < array.Length; i++)
+        {
+            array[i] = 0;
+        }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
