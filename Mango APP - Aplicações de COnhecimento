@@ -1,0 +1,163 @@
+int maxMango = 8;
+string mangoID = "";
+string mangoType = "";
+string mangoPhysic = "";
+string mangoFlavor = "";
+string mangoTree = "";
+
+bool validEntry = false;
+
+string[,] mangoArray = new string[maxMango, 5];
+
+// Menu var controlers
+string? input = "";
+string menuSelection = "";
+
+for (int i = 0; i < maxMango; i++)
+{
+     switch (i)
+     {
+          case 0:
+               mangoID = "esp0001";
+               mangoType = "espada";
+               mangoPhysic = "avermelhadas quando jovens e verdes com nervuras amarelas quando maduras. As mangas são frutos muito bonitos, perfumados, do tipo drupa, de formato ovóide-oblongo, mais ou menos alongado, de acordo com a variedade. Sua casca é fina, porém resistente, e pode apresentar cores diversas entre o verde, vermelho, rosa, amarelo ou laranja, com ou sem manchas pretas.";
+               mangoFlavor = "A polpa é originalmente fibrosa, suculenta, de coloração amarela ou alaranjada. No entanto, com o melhoramento genético, frutas menos fibrosas, mais doces e aromáticas já estão largamente disponíveis.";
+               mangoTree = "longeva, de copadensa, perene e muito frondosa, pode alcançar 30 metros de altura, tronco é largo, e apresenta casca escura, rugosa e látex resinoso. As folhas são coriáceas, lanceoladas, De floração abundante e ornamental, a mangueira apresenta inflorescências paniculadas e terminais, com flores pequenas e polígamas.";
+               break;
+
+          default:
+               mangoID = "";
+               mangoType = "";
+               mangoPhysic = "";
+               mangoFlavor = "";
+               mangoTree = "";
+               break;
+     }
+
+     mangoArray[i, 0] = "ID #: " + mangoID;
+     mangoArray[i, 1] = "Tipo: " + mangoType;
+     mangoArray[i, 2] = "Caracteristicas Fisica: " + mangoPhysic;
+     mangoArray[i, 3] = "Caracteristicas Sabor: " + mangoFlavor;
+     mangoArray[i, 4] = "Caracteristicas Arvore: " + mangoTree;
+}
+
+do
+{
+     Console.Clear();
+     Console.WriteLine("[1] (Exibir todas as mangas)");
+     Console.WriteLine("[2] (Inserir nova manga)");
+     Console.WriteLine();
+     Console.WriteLine("Escolha uma das opções do menu, ou digite SAIR para encerrar!");
+
+     MenuSelection();
+
+     switch (menuSelection)
+     {
+          case "1":
+               // Mostrar cadastros de mangas
+               for (int i = 0; i < maxMango; i++)
+               {
+                    if (mangoArray[i, 0] != "ID #: ")
+                    {
+                         ShowSearchIcons();
+                         for (int j = 0; j < 5; j++)
+                         {
+                              Console.WriteLine(mangoArray[i, j].ToString());
+                         }
+                         Console.WriteLine();
+                    }
+
+               }
+               Console.WriteLine("Pressione ENTER para continuar!");
+               input = Console.ReadLine();
+               break;
+
+          case "2":
+               // Inserir novo tipo!
+               //ShowSearchIcons();
+
+               int mangoCount = 0;
+               string maisManga = "s";
+
+               for (int i = 0; i < maxMango; i++)
+               {
+                    if (mangoArray[i, 0] != "ID #: ")
+                    {
+                         mangoCount = mangoCount += 1;
+                    }
+               }
+
+               if (mangoCount >= maxMango)
+               {
+                    Console.WriteLine("Numero maximo de cadastros atingido!");
+                    break;
+               }
+
+               do
+               {
+                    Console.WriteLine("Digite o tipo da manga: ");
+                    input = Console.ReadLine();
+                    if (input != null)
+                    {
+                         mangoType = input.Trim().ToLower();
+                         if (mangoType == "" && mangoType.Length < 4)
+                         {
+                              validEntry = false;
+                         }
+                         else validEntry = true;
+                    }
+
+
+               }
+               while (validEntry == false);
+               mangoID = mangoType.Substring(0, 3) + (mangoCount + 1).ToString("0000");
+
+               do
+               {
+                    Console.WriteLine("Insira as caracteristicas fisicas: ");
+                    input = Console.ReadLine();
+                    if(input != null)
+                    {
+
+                    }
+               } while ()
+
+               mangoCount += 1;
+
+               mangoArray[mangoCount, 0] = $"ID #: {mangoID}";
+               mangoArray[mangoCount, 1] = $"Tipo: {mangoType}";
+
+
+               Console.WriteLine($"Você possui {mangoCount} registros, Você deseja inserir uma nova manga ? (s/n)");
+
+               input = Console.ReadLine();
+               break;
+
+          case "3":
+               break;
+
+          case "4":
+               break;
+     }
+} while (menuSelection != "sair");
+
+void ShowSearchIcons()
+{
+     string[] icons = { ". ", ".. ", "... " };
+     foreach (string icon in icons)
+     {
+          Console.Write($"\rUpdating {icon}");
+          Thread.Sleep(700);
+     }
+     Console.Write($"\r {new String(' ', Console.BufferWidth)}");
+}
+
+void MenuSelection()
+{
+     input = Console.ReadLine();
+     if (input != null)
+     {
+          menuSelection = input.ToLower();
+     }
+
+}
