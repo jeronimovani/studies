@@ -303,4 +303,96 @@ void Clearing(int[] array)
             array[i] = 0;
         }
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+---- DESAFIO, GERADOR DE E-MAILS, deve gerar um e-mail utilizando os 2 primeiros digitos do nome e o sobrenome completo.
+
+string[,] corporate =
+{
+    {"Robert", "Bavin"},
+    {"Simon", "Bright"},
+    {"Kim", "Sinclair"},
+    {"Aashrita", "Kamath"},
+    {"Sarah", "Delucchi"},
+    {"Sinan", "Ali"}
+};
+
+string[,] external =
+{
+    {"Vinnie", "Ashton"}, {"Cody", "Dysart"},
+    {"Shay", "Lawrence"}, {"Daren", "Valdes"}
+};
+
+string[,] novosFuncionarios = {
+    {"Giovani", "Jeronimo"}, {"Erick", "Bueno"}
+};
+
+string externalDomain = "hayworth.com";
+string[] internoEmail = new string[corporate.GetLength(0)];
+string[] externoEmail = new string[external.GetLength(0)];
+
+--------------------------------------------> SOLUÇÃO LEARN
+for (int i = 0; i < corporate.GetLength(0); i++)
+{
+    DisplayEmail(first: corporate[i,0], last: corporate[i,1]);
+}
+
+for (int i = 0; i < external.GetLength(0); i++)
+{
+    DisplayEmail(first: external[i, 0], last: external[i,1], dominio: externalDomain);
+}
+
+void DisplayEmail(string first, string last, string dominio = "contoso.com")
+{
+    string email = first.Substring(0, 2) + last;
+    email = email.ToLower() + $"@{dominio}";
+    Console.WriteLine($"{email}");
+}
+
+--------------------------------------------> MINHA SOLUÇÃO
+void GenerateCorporateEmail(string[,] colaboradores, string dominio = "@contoso.com")
+{
+    for (int i = 0; i < colaboradores.GetLength(0); i++)
+    {
+        string internoAtual = "";
+        string email = "";
+        // display internal email addresses
+        for (int j = 0; j < colaboradores.GetLength(1); j++)
+        {
+            internoAtual = colaboradores[i, j];
+            if (j == 0)
+            {
+
+                internoEmail[i] += internoAtual.ToLower().Substring(0, 2);
+            }
+            else
+            {
+                internoEmail[i] += internoAtual.ToLower() + $"{dominio}";
+            }
+
+        }
+        Console.WriteLine(internoEmail[i]);
+    }
+}
+
+--------------------------------------------> MINHA SOLUÇÃO
+void GenerateExternalEmail(string[,] colaboradores, string dominio)
+{
+    for (int i = 0; i < colaboradores.GetLength(0); i++)
+    {
+        string externoAtual = "";
+        for (int j = 0; j < colaboradores.GetLength(1); j++)
+        {
+            externoAtual = colaboradores[i, j];
+            if (j == 0)
+            {
+                externoEmail[i] += externoAtual.ToLower().Substring(0, 2);
+            }
+            else
+            {
+                externoEmail[i] += externoAtual.ToLower() + $"{dominio}";
+            }
+        }
+        Console.WriteLine(externoEmail[i]);
+    }
+}
+
