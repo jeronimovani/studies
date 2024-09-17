@@ -1,0 +1,31 @@
+--------------------------------------------> TIPO DE RETORNO
+double total = 0;
+double minimumSpend = 30.00;
+
+double[] items = { 15.97, 3.50, 12.25, 22.99, 10.98 };
+double[] discounts = { 0.30, 0.00, 0.10, 0.20, 0.50 };
+
+for(int i = 0; i < items.Length; i++)
+{
+    total += GetDiscountedPrice(i);
+}
+total -= TotalMeetsMinimum() ? 5.00: 0.00;
+Console.WriteLine($"Total: R${FormatDecimal(total)}");
+Console.WriteLine(items[0] * (1 - discounts[0]));
+double GetDiscountedPrice(int itemIndex)
+{
+    // Calcular o desconto de cada 1 dos items
+    return items[itemIndex] * (1 - discounts[itemIndex]);
+}
+
+bool TotalMeetsMinimum()
+{
+    // Validar se o total está de acordo com o minimo.
+    return total >= minimumSpend;
+}
+
+string FormatDecimal(double input)
+{
+    // Formatar o double para que fique apenas 4 digitos.
+    return input.ToString().Substring(0, 5);
+}
