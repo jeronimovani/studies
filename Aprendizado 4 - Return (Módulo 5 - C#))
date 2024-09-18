@@ -53,3 +53,36 @@ double Valor()
 {
     return 100 * 0.5;
 }
+
+--------------------------------------------------------------> Realizar a reversão de palavras e frases (Sem métodos):
+string palavra = "Vani";
+string frase = "Vini vidi Vici";
+
+Console.WriteLine(ReverterPalavra(palavra));
+Console.WriteLine(ReverterFrase(frase));
+
+string ReverterPalavra(string word)
+{
+    string result = "";
+    for (int i = word.Length - 1; i >= 0; i--)
+    {
+        result += word[i];
+    }
+    return result;
+}
+
+string ReverterFrase(string frase)
+{
+    string result = "";
+    string[] sentença = frase.Split(" ");
+    foreach (string palavra in sentença)
+    {
+        //result+= ReverterPalavra(palavra) + " ";
+        for(int i = palavra.Length -1; i >=0; i--)
+        {
+            result+= palavra[i];
+        }
+        result += " ";
+    }
+    return result.TrimEnd();
+}
