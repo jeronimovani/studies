@@ -1,0 +1,61 @@
+string ogMessage = "O vani talvez possa ser um bom programador 1 dia";
+char[] aMessage = ogMessage.ToCharArray();
+char[] bMessage = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+int count = 0;
+foreach(char c in ogMessage)
+{
+    count++;
+    //Console.WriteLine(c);
+}
+
+for(int i = 0; i < aMessage.Length; i++)
+{
+    for(int z = 0; z < bMessage.Length; z++)
+    if(aMessage[i] == bMessage[z])
+    {
+        Console.WriteLine($"Igual entre a e b na posição {i} os iguais são: A:{aMessage[i]} e B:{bMessage[z]}");
+    }
+}
+
+Console.WriteLine($"A sua contagem deu um total de {count}");
+
+Array.Reverse(aMessage);
+
+Console.WriteLine(aMessage);
+
+|#|___________________________________________________________________________________________|#|
+|#|___________________________________________________________________________________________|#|
+|#|__________VERIFICAR SE A SOMA DE DOIS INDEX OU 1 INDEX PODE CHEGAR AO ALVO SETADO__________|#|
+|#|___________________________________________________________________________________________|#|
+|#|___________________________________________________________________________________________|#|
+
+int target = 0;
+int[] coins = { 3, 5, 19, 20, 10, 8, 7, 6, 4, 2, 1, 9, 0 };
+int[] result = TwoCoins(coins, target);
+
+string final = result.Length == 0 ? "Não encontramos nem um par para a soma!" : result.Length == 1 ? $"O index {result[0]} é correspondente" : $"Encontramos os indexes {result[0]} e {result[1]}";
+
+Console.WriteLine(final);
+int[] TwoCoins(int[] coins, int target)
+{
+    for (int i = coins.Length - 1; i >= 0; i--)
+    {
+        for (int j = coins.Length - 2; j >= 0; j--)
+        {
+            if (coins[i] == target)
+            {
+                return new int[] { i };
+            }
+            else if (coins[j]== target)
+            {
+                return new int[] { j };
+            }
+            if (coins[j] + coins[i] == target)
+            {
+                return new int[] { j, i };
+            }
+        }
+    }
+    return new int[0];
+}
+_________________________________________________________________________________________________________
