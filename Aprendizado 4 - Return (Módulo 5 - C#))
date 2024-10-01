@@ -184,3 +184,93 @@ int[,] TwoCoins(int[] coins, int target)
     }
     return (count == 0) ? new int[0, 0] : result;
 }
+
+|#|_________________________________________________________|#|
+|#|_________________________________________________________|#|
+|#|__________Desafio - Desafio de minijogo de dados_________|#|
+|#|_________________________________________________________|#|
+|#|_________________________________________________________|#|
+
+
+Random random = new Random();
+string? input;
+string name = "";
+
+Console.Write("Quer inserir seu nome?");
+name = Jogador();
+
+
+Console.WriteLine($"{name}, você gostaria de jogar? (S/N)");
+if (Jogar())
+{
+    Console.WriteLine($"Vamos lá");
+    Joguinho();
+}
+
+void Joguinho()
+{
+    // METODO DO JOGO DE DADOS, SE O DADO FOR MAIOR QUE ALVO, VOCÊ GANHA!
+    bool jogar = true;
+
+    while (jogar)
+    {
+        int dados = Dados();
+        int alvo = Alvo();
+        Console.Clear();
+        Console.WriteLine($"Você precisa tirar mais do que {alvo}");
+        for (int i = 3; i >= 0; i--)
+        {
+            Console.Write($"\rLançando dados {i}");
+            Thread.Sleep(800);
+        }
+        Console.WriteLine(new string('-', Console.BufferWidth));
+        Console.WriteLine($"\r\nVocê tirou {dados}");
+        Console.WriteLine(GanhouOuPerdeu(dados, alvo));
+        Console.WriteLine("Quer jogar novamente? (S/N)");
+
+        jogar = Jogar();
+    }
+}
+
+int Dados()
+{    // GERA O VALOR DO DADO
+    return random.Next(0, 7);
+}
+
+int Alvo()
+{    // GERA O VALOR DO ALVO
+    return random.Next(0, 6);
+}
+
+string GanhouOuPerdeu(int dados, int alvo)
+{ // VALIDA RESULTADO DO JOGO
+    return dados > alvo ? "Você ganhou!" : "Você perdeu :(";
+}
+
+string Jogador()
+{    // COLETAR NOME DE JOGADOR
+    input = Console.ReadLine();
+    if (input != null && input.Length > 2)
+    {
+        return input;
+    }
+    return "OAB";
+}
+
+bool Jogar()
+{    // MÉTODO PARA INICIAR JOGO OU ENCERRAR
+    bool entry = false;
+    string escolha = "";
+    while (!entry)
+    {
+        escolha = Console.ReadLine();
+        if (escolha.Trim().ToLower() != "n" && escolha.ToLower().Trim() != "s")
+        {
+            Console.WriteLine($"Entre (S/N)");
+            entry = false;
+        }
+        else
+            entry = true;
+    }
+    return escolha.Trim().ToLower().Equals("s");
+}
