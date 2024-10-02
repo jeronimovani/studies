@@ -58,4 +58,93 @@ int[] TwoCoins(int[] coins, int target)
     }
     return new int[0];
 }
-_________________________________________________________________________________________________________
+|#|_________________________________|#|
+|#|_________________________________|#|
+|#|__________jogo de dados__________|#|
+|#|_________________________________|#|
+|#|_________________________________|#|
+
+Random random = new Random();
+
+Console.WriteLine($"Vamos jogar? (S/N)");
+if (Jogar())
+{
+    string nome = "";
+    bool entrada = false;
+    Console.WriteLine("Insira um nome (min 4 digitos) ou tecle enter para jogar");
+    while (!entrada)
+    {
+        nome = Console.ReadLine();
+        if (nome == "")
+        {
+            break;
+        }
+        if (nome.Length <= 3 || nome.Contains(" "))
+        {
+            Console.WriteLine($"Nome invalido!");
+            continue;
+        }
+        else
+            entrada = true;
+    }
+    if (entrada && nome != "")
+    {
+        Joguinho(nome);
+    }
+    else
+        Joguinho();
+}
+
+
+void Joguinho(string name = "none")
+{
+    bool nomeTrue = name != "none";
+    bool jogando = true;
+
+    while (jogando)
+    {
+        int alvo = Alvo();
+        int dados = Dados();
+        Console.Clear();
+        Console.WriteLine(nomeTrue ? $"{name}, será que você consegue tirar mais do que {alvo}?!" : $"Você precisa tirar mais do que {alvo} para ganhar!");
+        Console.WriteLine("Aperte qualquer tecla quando quiser lançar os dados!");
+        Console.ReadLine();
+        for (int i = 3; i >= 0; i--)
+        {
+            Console.Write($"\rAssoprando dados... {i}");
+            Thread.Sleep(700);
+        }
+        Console.WriteLine($"\rVocê tirou {dados} {new string(' ', Console.BufferWidth)}");
+        Console.Write($"\r{GanhouOuPerdeu(alvo, dados)}");
+        Console.WriteLine();
+        Console.WriteLine("Quer continuar jogando ? (S/N)");
+
+        jogando = Jogar();
+
+    }
+}
+
+bool Jogar()
+{
+    string entrada = Console.ReadLine();
+    return entrada.Trim().ToLower().Contains("s");
+}
+
+int Alvo()
+{
+    return random.Next(0, 6);
+}
+int Dados()
+{
+    return random.Next(0, 7);
+}
+
+string GanhouOuPerdeu(int alvo, int dados)
+{
+    return dados > alvo ? "Parabens, você ganhou!" : "Droga, você perdeu :/";
+}
+
+|#|________________________________________________|#|
+|#|________________________________________________|#|
+|#|________________________________________________|#|
+|#|________________________________________________|#|
